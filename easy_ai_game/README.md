@@ -44,22 +44,27 @@ Algorithm used for the AI is [Negamax](https://en.wikipedia.org/wiki/Negamax)
  
 ##### Human vs Human
 ![Imgur](https://i.imgur.com/jNm9zYj.gif)
+
 [Link to video](https://streamable.com/x1237g)
 
 ##### Human vs AI
 ![Imgur](https://i.imgur.com/6oSwkaE.gif)
+
 [Link to video](https://streamable.com/3c2avj)
 
 ##### AI vs AI - same depth
 ![Imgur](https://i.imgur.com/PLsIFoR.gif)
+
 [Link to video](https://streamable.com/iaffq7)
 
 ##### AI vs AI - first depth bigger
 ![Imgur](https://i.imgur.com/LGzsFEH.gif)
+
 [Link to video](https://streamable.com/ir0r70)
 
 ##### AI vs AI - second depth bigger
 ![Imgur](https://i.imgur.com/wNmKsSd.gif)
+
 [Link to video](https://streamable.com/0893hd)
 
 #### Useful Links
