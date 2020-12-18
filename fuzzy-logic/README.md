@@ -11,6 +11,10 @@
     + [Soil Moisture](#soil-moisture)
     + [Conditions Rating](#conditions-rating)
     + [Rules Visualization](#rules-visualization)
+  * [Results](#results)
+    + [Ideal](#ideal)
+    + [Poor](#poor)
+    + [Mediocre](#mediocre)
   * [Useful Links](#useful-links)
     + [Fuzzy Logic](#fuzzy-logic)
     + [SkFuzzy](#skfuzzy)
@@ -90,6 +94,16 @@ The ideal conditions for a plant would be the values from the middle of the give
 
 ### Rules Visualization
 ![Imgur](https://i.imgur.com/zLmuHIhl.png)
+
+## Results
+### Ideal
+![Imgur](https://i.imgur.com/eZkWv7l.png)
+
+### Poor
+![Imgur](https://i.imgur.com/FpZPvm5.png)
+
+### Mediocre
+![Imgur](https://i.imgur.com/Y867G2B.png)
 
 
 ## Useful Links
