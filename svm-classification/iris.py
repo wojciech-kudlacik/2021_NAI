@@ -1,6 +1,10 @@
 """
 Iris Petal SVM Classification
 Authors: Wojciech Kudłacik, Norbert Daniluk
+This program classifies data from the Iris Dataset.
+Type of an Iris flower is being determined by the length and width of its petals and sepals.
+Link: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/
+It utilizes sklearn library as the primary engine to perform classification.
 """
 
 from iris_setup import IrisSetup
@@ -27,11 +31,11 @@ class IrisClassification:
         :param iris_part: Name of the iris part
         """
         if iris_part is "Sepal":
-            X = self.iris_dataset.iloc[:, :2]
+            x = self.iris_dataset.iloc[:, :2]
         else:
-            X = self.iris_dataset.iloc[:, 2:]
+            x = self.iris_dataset.iloc[:, 2:]
 
-        plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=self.iris_target, cmap='coolwarm')
+        plt.scatter(x.iloc[:, 0], x.iloc[:, 1], c=self.iris_target, cmap='coolwarm')
         plt.xlabel(f'{iris_part} len')
         plt.ylabel(f'{iris_part} width')
         plt.title(f'{iris_part} width & len correlation to Iris Type')
@@ -90,4 +94,3 @@ class IrisClassification:
 if __name__ == '__main__':
     dataset = IrisSetup().create_dataset_from_file()
     IrisClassification(dataset).run()
-
