@@ -3,7 +3,7 @@ Movie recommendations system
 Authors: Wojciech Kudłacik, Norbert Daniluk
 
 Program to find movie recommendations between users based on their similarity.
-Recommendations are found using either Euclidean distance of Pearson score between users.
+Recommendations are found using either Euclidean distance or Pearson's score between users.
 The program utilizes argparse as the execution method.
 In order to run the program you need to supply all the required params to the exec command.
 You can find examples and how tos in the README.md.
