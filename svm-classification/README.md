@@ -59,18 +59,18 @@ The result will be a matrix of predicted classes for the Iris flowers in the tes
 
 Predicted accuracy and standard deviation is quite high, due to the quality of the dataset.
 
-![Imgur](https://i.imgur.com/FiRwJc2.png)
+![Imgur](https://i.imgur.com/aVtiKDI.png)
 
-![Imgur](https://i.imgur.com/dcQhLY7.png)
+![Imgur](https://i.imgur.com/3g7Mkzk.png)
 
-![Imgur](https://i.imgur.com/HJGS5z6.png)
+![Imgur](https://i.imgur.com/cNGFRl3.png)
 
 ### Data visualization
-![Imgur](https://i.imgur.com/xx1wdOK.png)
+![Imgur](https://i.imgur.com/ZFwxPve.png)
 
-![Imgur](https://i.imgur.com/TIrO1Kw.png)
+![Imgur](https://i.imgur.com/Q2Bi1cD.png)
 
-![Imgur](https://i.imgur.com/LvkFOzD.png)
+![Imgur](https://i.imgur.com/va3Kv1h.png)
 
 ### SOCR data
 
