@@ -19,7 +19,7 @@ from sklearn.model_selection import cross_val_score
 
 class IrisClassification:
     """
-    A main class to perform SVM Iris Classification.
+    Main class to perform SVM Iris Classification.
     """
     def __init__(self, data: pd.DataFrame) -> None:
         self.iris_dataset = data
