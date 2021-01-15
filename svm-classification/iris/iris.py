@@ -6,6 +6,8 @@ Type of an Iris flower is being determined by the length and width of its petals
 Link: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/
 It utilizes sklearn library as the primary engine to perform classification.
 Tutorials used:
+- https://medium.com/@pinnzonandres/iris-classification-with-svm-on-python-c1b6e833522c
+- https://dataaspirant.com/svm-classifier-implemenation-python-scikit-learn/?fbclid=IwAR1l-T9EQAy3bxPVfudCby0Qmlvd6AnqRBioLALRTVHS_HK5yj4b5u5Law0
 """
 
 from iris_setup import IrisSetup
@@ -14,9 +16,8 @@ import matplotlib.pylab as plt
 import seaborn as sns
 import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report
 from sklearn.svm import SVC
-from typing import List
 
 
 class IrisClassification:
