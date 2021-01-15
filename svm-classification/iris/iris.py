@@ -13,8 +13,7 @@ import matplotlib.pylab as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import cross_val_score
+from typing import List
 
 
 class IrisClassification:
@@ -23,7 +22,22 @@ class IrisClassification:
     """
     def __init__(self, data: pd.DataFrame) -> None:
         self.iris_dataset = data
+        self.iris_measurements = self.iris_dataset.iloc[:, :-1]
         self.iris_target = self.iris_dataset.iloc[:, -1].values
+        self.sepal_data = self.iris_dataset.iloc[:, :2]
+        self.petal_data = self.iris_dataset.iloc[:, 2:]
+
+    @staticmethod
+    def get_user_input() -> List[str]:
+        """
+        Method to get input from User
+        :return: List of user inputs, that describe Iris flower
+        """
+        sepal_len = input("Sepal Len [cm]: ")
+        sepal_width = input("Sepal Width [cm]: ")
+        petal_len = input("Petal Len [cm]: ")
+        petal_width = input("Sepal Width [cm]: ")
+        return [sepal_len, sepal_width, petal_len, petal_width]
 
     def visualize_data(self, iris_part: str) -> None:
         """
@@ -31,15 +45,23 @@ class IrisClassification:
         :param iris_part: Name of the iris part
         """
         if iris_part is "Sepal":
-            x = self.iris_dataset.iloc[:, :2]
+            x = self.sepal_data
         else:
-            x = self.iris_dataset.iloc[:, 2:]
+            x = self.petal_data
 
-        plt.scatter(x.iloc[:, 0], x.iloc[:, 1], c=self.iris_target, cmap='coolwarm')
+        plt.scatter(x.iloc[:, 0], x.iloc[:, 1], c=self.replace_class_values(), cmap='coolwarm')
         plt.xlabel(f'{iris_part} len')
         plt.ylabel(f'{iris_part} width')
         plt.title(f'{iris_part} width & len correlation to Iris Type')
         plt.show()
+
+    def replace_class_values(self) -> SVC:
+        """
+        Method to replace Iris Setosa names into 0, 1, 2 values for visualization purposes
+        :return: Values of the last column of dataset as numbers
+        """
+        target_as_numbers = self.iris_dataset.replace({"class": {"Iris-setosa": 0, "Iris-versicolor": 1, "Iris-virginica": 2}})
+        return target_as_numbers.iloc[:, -1].values
 
     def visualize_heatmap(self) -> None:
         """
@@ -50,45 +72,37 @@ class IrisClassification:
         plt.title('Correlation on iris classes')
         plt.show()
 
-    def classify_data(self) -> None:
+    def train(self) -> SVC:
         """
-        Method to create classifier
+        Method to train the classifier based on the provided dataset
+        :return: classifier: SVC model
         """
-        """
-        train_test_split is a function in Sklearn model selection for splitting data arrays into two subsets: 
-        for training data and for testing data. With this function, you don't need to divide the dataset manually.
-        By default, Sklearn train_test_split will make random partitions for the two subsets. 
-        However, you can also specify a random state for the operation.
-        """
-        x_train, x_test, y_train, y_test = train_test_split(self.iris_dataset.iloc[:, :-1], self.iris_target, test_size=0.25)
-
-        # linear kernel is used to classify data
+        x_train, x_test, y_train, y_test = train_test_split(self.iris_measurements, self.iris_target, test_size=0.25)
         classifier = SVC(kernel='linear')
-
-        # fit the SVM model according to the given training data.
         classifier.fit(x_train, y_train)
+        return classifier
 
-        # perform classification on X, X being all the data from the dataset, without the type of Iris
-        y_pred = classifier.predict(x_test)
-
-        # confusion matrix is needed to predict the accuracy of classification
-        cm = confusion_matrix(y_test, y_pred)
-        print(cm)
-
-        accuracies = cross_val_score(estimator=classifier, X=x_train, y=y_train, cv=20)
-
-        # {:.2f} is used to reduce the number of decimal points to 2
-        print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
-        print("Std Deviation: {:.2f} %".format(accuracies.std()*100))
+    @staticmethod
+    def make_prediction(classifier, measurements) -> str:
+        """
+        Makes a prediction based on the previously learnt data and provided input from a user
+        :param classifier: SVC model
+        :param measurements: User input that describes Iris flower
+        :return: Predicted Iris Flower class
+        """
+        return classifier.predict([measurements])
 
     def run(self) -> None:
         """
         Method to run the program
         """
-        # self.visualize_data("Sepal")
-        # self.visualize_data("Petal")
-        # self.visualize_heatmap()
-        self.classify_data()
+        self.visualize_data("Sepal")
+        self.visualize_data("Petal")
+        self.visualize_heatmap()
+        inputs = self.get_user_input()
+        classifier = self.train()
+        result = self.make_prediction(classifier, inputs)
+        print(result)
 
 
 if __name__ == '__main__':

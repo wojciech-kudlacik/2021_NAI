@@ -52,10 +52,13 @@ class GenderClassification:
     def make_prediction(self, measurements) -> str:
         """
         Makes a prediction based on the previously learnt data and provided input from a user
+        :param measurements: Measurements of the person taken from the input
+        :return: Predicted gender
         """
         return self.clf.predict([measurements])
 
-    def print_result(self, result: str) -> None:
+    @staticmethod
+    def print_result(result: str) -> None:
         """
         Prints a result.
         """
