@@ -1,3 +1,13 @@
+"""
+Neural Network (mostly) Image Classifier
+Authors: Wojciech Kudłacik, Norbert Daniluk
+This program classifies data from 4 different datasets:
+- Iris Flowers dataset
+- CIFAR10
+- Fashion MNIST
+- Architectural Heritage
+It utilizes tensorflow and keras as the primary engine for classification
+"""
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
