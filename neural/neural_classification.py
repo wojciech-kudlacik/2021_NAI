@@ -10,9 +10,10 @@ It utilizes tensorflow and keras as the primary engine for classification
 """
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D, Activation
 import matplotlib.pyplot as plt
 import numpy as np
+import pickle
 
 
 class NeuralClassification:
@@ -26,7 +27,15 @@ class NeuralClassification:
         dataset_number = input('Choose dataset (1-4): ')
         if 1 <= int(dataset_number) <= 4:
             self.dataset = self.choose_dataset(int(dataset_number))
-            (x_train, y_train), (x_test, y_test) = self.unpack_dataset(self.dataset)
+
+            if dataset_number == '1':
+                pass
+            elif dataset_number == '2':
+                (x_train, y_train), (x_test, y_test) = self.unpack_dataset(self.dataset)
+            elif dataset_number == '3':
+                (x_train, y_train), (x_test, y_test) = self.unpack_dataset(self.dataset)
+            elif dataset_number == '4':
+                (x_train, y_train), (x_test, y_test) = self.load_heritage_data()
 
             new_model = input('Train new model? (y/n): ')
             if new_model == 'y':
@@ -39,12 +48,14 @@ class NeuralClassification:
                 else:
                     print('Model not saved')
 
-                self.predict_from_dataset(model[0], x_test, y_test)
+                index = input('Index of a picture to test: ')
+                self.predict_from_dataset(model[0], x_test, y_test, index)
 
             else:
                 model_path = input('Specify model path: ')
+                index = input('Index of a picture to test: ')
                 model = self.read_model_from_file(model_path)
-                self.predict_from_dataset(model, x_test, y_test)
+                self.predict_from_dataset(model, x_test, y_test, index)
 
         else:
             print('Out of range. Try again')
@@ -54,15 +65,21 @@ class NeuralClassification:
         return dataset.load_data()
 
     def train(self, x_train, y_train, x_test, y_test, epochs, dataset_number):
+        print(dataset_number)
+
+        if dataset_number == '4':
+            x_train = np.array(x_train)
+            y_train = np.array(y_train)
+            x_test = np.array(x_test)
+            y_test = np.array(y_test)
 
         normalized_x_train = tf.keras.utils.normalize(x_train, axis=1)
         normalized_x_test = tf.keras.utils.normalize(x_test, axis=1)
 
-        layers = {'1': self.iris_layers() ,'2': self.cifar_layers(), '3': self.fashion_layers(), '4': self.heritage_layers()}
+        layers = {'1': self.iris_layers(), '2': self.cifar_layers(), '3': self.fashion_layers(), '4': self.heritage_layers(x_train)}
         model = layers.get(dataset_number)
 
         model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-
         model.fit(normalized_x_train, y_train, epochs=int(epochs))
 
         self.evaluate_model(model, normalized_x_test, y_test)
@@ -93,8 +110,21 @@ class NeuralClassification:
 
         return model
 
-    def heritage_layers(self):
-        pass
+    @staticmethod
+    def heritage_layers(x_train):
+        model = Sequential()
+        model.add(Conv2D(64, (3, 3), input_shape=(128, 128, 1)))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Conv2D(64, (3, 3)))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Flatten())
+        model.add(Dense(64))
+        model.add(Dense(10))
+        model.add(Activation('sigmoid'))
+
+        return model
 
     def iris_layers(self):
         pass
@@ -118,9 +148,18 @@ class NeuralClassification:
             print('Architectural Heritage')
             self.categories = ['Altar', 'Apse', 'Bell tower', 'Column', 'Dome (inner)', 'Dome (outer)', 'Flying buttress',
                                'Gargoyle (and Chimera)', 'Stained glass', 'Vault']
-            # load external dataset
+            dataset = self.load_heritage_data()
 
         return dataset
+
+    @staticmethod
+    def load_heritage_data():
+        x_train = pickle.load(open('x_train.pickle', 'rb'))
+        y_train = pickle.load(open('y_train.pickle', 'rb'))
+        x_test = pickle.load(open('x_test.pickle', 'rb'))
+        y_test = pickle.load(open('y_test.pickle', 'rb'))
+
+        return (x_train, y_train), (x_test, y_test)
 
     @staticmethod
     def evaluate_model(model, x_test, y_test):
@@ -133,14 +172,14 @@ class NeuralClassification:
         model.save(path + '.model')
         print('Saved')
 
-    def predict_from_dataset(self, model, x_test, y_test):
+    def predict_from_dataset(self, model, x_test, y_test, index):
         prediction = model.predict([x_test])
-        predicted_category = np.argmax(prediction[123])
+        predicted_category = np.argmax(prediction[int(index)])
         print(predicted_category)
         print('Predicted category: ' + self.categories[int(predicted_category)])
 
-        plt.imshow(x_test[123])
-        print('Actual category: ' + self.categories[int(y_test[123])])
+        plt.imshow(x_test[int(index)])
+        print('Actual category: ' + self.categories[int(y_test[int(index)])])
         plt.show()
 
     @staticmethod
