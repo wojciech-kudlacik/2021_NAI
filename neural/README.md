@@ -1,3 +1,53 @@
+- [Assignment 6 - Data Classification with Neural Networks](#assignment-6---data-classification-with-neural-networks)
+  * [Setup](#setup)
+    + [Installing scikit-learn](#installing-scikit-learn)
+    + [Installing numpy](#installing-numpy)
+    + [Installing tensorflow](#installing-tensorflow)
+    + [Installing matplotlib](#installing-matplotlib)
+    + [Installing opencv](#installing-opencv)
+  * [About the program](#about-the-program)
+  * [How to run](#how-to-run)
+  * [Datasets](#datasets)
+    + [Iris flowers dataset](#iris-flowers-dataset)
+    + [Outputs](#outputs)
+    + [100 epochs](#100-epochs)
+      - [Accuray and loss](#accuray-and-loss)
+      - [Data test](#data-test)
+    + [150 epochs](#150-epochs)
+      - [Accuray and loss](#accuray-and-loss-1)
+      - [Data test](#data-test-1)
+    + [Comparison with SVM](#comparison-with-svm)
+    + [CIFAR10](#cifar10)
+    + [Outputs](#outputs-1)
+    + [10 epochs](#10-epochs)
+      - [Accuracy and loss](#accuracy-and-loss)
+      - [Image test](#image-test)
+    + [20 epochs](#20-epochs)
+      - [Accuracy and loss](#accuracy-and-loss-1)
+      - [Image test](#image-test-1)
+    + [Fashion MNIST](#fashion-mnist)
+    + [Outputs](#outputs-2)
+    + [30 epochs](#30-epochs)
+      - [Accuracy and loss](#accuracy-and-loss-2)
+      - [Image test](#image-test-2)
+    + [50 epochs](#50-epochs)
+      - [Accuracy and loss](#accuracy-and-loss-3)
+      - [Image test](#image-test-3)
+    + [Architectural Heritage](#architectural-heritage)
+    + [Outputs](#outputs-3)
+    + [10 epochs](#10-epochs-1)
+      - [Accuracy and loss](#accuracy-and-loss-4)
+      - [Image test](#image-test-4)
+    + [20 epochs](#20-epochs-1)
+      - [Accuracy and loss](#accuracy-and-loss-5)
+      - [Image test](#image-test-5)
+  * [Useful Links](#useful-links)
+    + [Docstring](#docstring)
+    + [scikit-learn](#scikit-learn)
+    + [Tensorflow](#tensorflow)
+    + [Keras](#keras)
+    + [Datasets](#datasets-1)
+
 # Assignment 6 - Data Classification with Neural Networks
 The goal of this assignment was to implement a data classification algorithm with the assistance of neural networks using four different datasets.
 Main engine for this exercise was [Tensorflow](https://www.tensorflow.org/) + [Keras](https://keras.io/). 
@@ -108,6 +158,8 @@ If you have chosen to use an existing model:
 In both cases you will then see this message:
 
 **Index of a feature / picture to test** - choose index of the data you want to test your model against
+
+## Datasets
 
 ### Iris flowers dataset
 The Iris flower data set or Fisher's Iris data set is a multivariate data set introduced by the British statistician, eugenicist, and biologist Ronald Fisher in his 1936 paper *The use of multiple measurements in taxonomic problems as an example of linear discriminant analysis*. Based on Fisher's linear discriminant model, this data set became a typical test case for many statistical classification techniques in machine learning such as support vector machines.
