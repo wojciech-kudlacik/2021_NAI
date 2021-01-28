@@ -142,3 +142,8 @@ cython_debug/
 
 # neural models
 neural/models/*
+neural/heritage_dataset
+neural/x_test.pickle
+neural/x_train.pickle
+neural/y_test.pickle
+neural/y_train.pickle
