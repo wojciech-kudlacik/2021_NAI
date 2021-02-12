@@ -147,3 +147,5 @@ neural/x_test.pickle
 neural/x_train.pickle
 neural/y_test.pickle
 neural/y_train.pickle
+
+neural_extra/imagenet-vgg-verydeep-19.mat
