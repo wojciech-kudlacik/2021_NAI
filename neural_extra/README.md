@@ -37,9 +37,13 @@ cd into/project/path
 python3 neural_style.py
 ```
 
+**IMPORTANT**
+
+Since this project uses pretrained network this file [imagenet-vgg-verydeep-19.mat](https://www.kaggle.com/teksab/imagenetvggverydeep19mat) needs to be present in the root of the repository.
+
 ## Examples
 
-LINKS TO EXAMPLES FROM IMGUR
+![Imgur](https://i.imgur.com/Kho7H1Y.jpg)
 
 ## Useful Links
 
